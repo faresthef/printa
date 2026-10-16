@@ -1,6 +1,8 @@
 # Compile un .ipa non signé sur un Mac GitHub, à installer ensuite avec Sideloadly / AltStore.
 name: iOS (.ipa non signé)
 on: [push, workflow_dispatch]
+permissions:
+  contents: write
 jobs:
   build:
     runs-on: macos-15
@@ -17,3 +19,9 @@ jobs:
           zip -qr Printa.ipa Payload
       - uses: actions/upload-artifact@v4
         with: { name: Printa-ipa, path: Printa.ipa }
+      # Lien direct stable : https://github.com/<compte>/printa/releases/latest/download/Printa.ipa
+      - name: Publier dans la release « latest »
+        env: { GH_TOKEN: '${{ github.token }}' }
+        run: |
+          gh release delete latest --yes --cleanup-tag || true
+          gh release create latest Printa.ipa --title "Printa (dernière version)" --notes "Installe Printa.ipa avec Sideloadly." --target "$GITHUB_SHA"
