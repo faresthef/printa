@@ -1,0 +1,46 @@
+:root {
+  --bg: #f4f2ee;
+  --card: #fff;
+  --text: #1c1b19;
+  --muted: #6d6a64;
+  --accent: #e2572b;
+  --border: #e3dfd8;
+  font-family: -apple-system, system-ui, sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #161513; --card: #22211e; --text: #f2efe9; --muted: #a29e96; --border: #3a3833; }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  padding: calc(env(safe-area-inset-top) + 12px) 16px calc(env(safe-area-inset-bottom) + 16px);
+  background: var(--bg);
+  color: var(--text);
+  max-width: 560px;
+  margin-inline: auto;
+}
+header { display: flex; align-items: center; justify-content: space-between; }
+h1 { font-size: 28px; margin: 0; }
+.status { color: var(--muted); margin: 6px 0 14px; font-size: 14px; }
+.status.ok { color: #2f8f4e; }
+.status.err { color: #c8372d; }
+.card { background: var(--card); border: 1px solid var(--border); border-radius: 14px; padding: 14px; display: grid; gap: 12px; }
+.row { display: flex; align-items: center; justify-content: space-between; gap: 12px; font-size: 15px; }
+.row input[type='range'] { flex: 1; max-width: 60%; }
+select, textarea, input[type='file'] {
+  font: inherit; color: inherit; background: var(--bg);
+  border: 1px solid var(--border); border-radius: 10px; padding: 8px 10px;
+}
+textarea { width: 100%; resize: vertical; font-size: 16px; }
+.pane { display: grid; gap: 12px; }
+.tabs { display: flex; gap: 6px; background: var(--bg); border-radius: 10px; padding: 4px; }
+.tab { flex: 1; border: 0; background: transparent; color: var(--muted); padding: 8px; border-radius: 8px; font: inherit; }
+.tab.active { background: var(--card); color: var(--text); font-weight: 600; }
+button.primary { background: var(--accent); color: #fff; border: 0; border-radius: 10px; padding: 10px 16px; font: inherit; font-weight: 600; }
+button.primary:disabled { opacity: 0.45; }
+button.big { width: 100%; padding: 14px; font-size: 17px; margin-top: 14px; }
+.paper { margin-top: 14px; background: #fff; border-radius: 6px; padding: 10px 0; box-shadow: 0 1px 4px #0002; text-align: center; max-height: 50vh; overflow: auto; }
+.paper canvas { width: 100%; image-rendering: pixelated; display: block; }
+.pane[hidden] { display: none; }
+.card, .pane { grid-template-columns: minmax(0, 1fr); }
+input[type='file'] { width: 100%; min-width: 0; }

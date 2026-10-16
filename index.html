@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="color-scheme" content="light dark" />
+    <title>Printa</title>
+    <link rel="stylesheet" href="/src/style.css" />
+  </head>
+  <body>
+    <header>
+      <h1>Printa</h1>
+      <button id="connect" class="primary">Connecter</button>
+    </header>
+    <p id="status" class="status">Imprimante non connectée</p>
+
+    <section class="card">
+      <label class="row">Modèle
+        <select id="model">
+          <option value="48">A6 · 58 mm (384 points)</option>
+          <option value="72">A6+ · 80 mm (576 points)</option>
+        </select>
+      </label>
+      <div class="tabs" role="tablist">
+        <button class="tab active" data-tab="text">Texte</button>
+        <button class="tab" data-tab="image">Image</button>
+      </div>
+
+      <div id="tab-text" class="pane">
+        <textarea id="text" rows="5" placeholder="Écris ton texte ici…">Bonjour 👋
+Printa fonctionne !</textarea>
+        <label class="row">Taille <input id="size" type="range" min="16" max="96" value="32" /></label>
+        <div class="row">
+          <label><input id="bold" type="checkbox" checked /> Gras</label>
+          <select id="align">
+            <option value="start">Début</option>
+            <option value="center">Centré</option>
+            <option value="end">Fin</option>
+          </select>
+        </div>
+      </div>
+
+      <div id="tab-image" class="pane" hidden>
+        <input id="file" type="file" accept="image/*" />
+        <div class="row">
+          <label><input id="dither" type="checkbox" checked /> Tramage photo</label>
+          <label><input id="rotate" type="checkbox" /> Pivoter 90°</label>
+        </div>
+        <label class="row">Luminosité <input id="brightness" type="range" min="-100" max="100" value="0" /></label>
+      </div>
+
+      <label class="row">Avance papier
+        <select id="feed">
+          <option value="0">Aucune</option>
+          <option value="96" selected>Courte</option>
+          <option value="200">Longue</option>
+        </select>
+      </label>
+    </section>
+
+    <div class="paper"><canvas id="preview"></canvas></div>
+
+    <button id="print" class="primary big" disabled>Imprimer</button>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>
