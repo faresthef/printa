@@ -1,0 +1,19 @@
+# Publie la version web (à ouvrir dans Bluefy sur iPhone) sur la branche gh-pages.
+name: Web (Bluefy)
+on: [push, workflow_dispatch]
+permissions:
+  contents: write
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: { node-version: 22 }
+      - run: npm ci && npm run build
+      - run: |
+          cd dist
+          git init -q -b gh-pages
+          git add -A
+          git -c user.name=github-actions -c user.email=actions@github.com commit -qm "Déploiement $GITHUB_SHA"
+          git push -f "https://x-access-token:${{ github.token }}@github.com/${{ github.repository }}" gh-pages

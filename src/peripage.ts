@@ -45,8 +45,12 @@ export class PeriPage {
     return this.deviceId !== null;
   }
 
+  // Initialisé dès le départ : sur le web (Bluefy, Chrome), requestDevice doit
+  // suivre le clic sans attente pour garder l'autorisation de l'utilisateur.
+  #ready = BleClient.initialize().catch(() => {});
+
   async connect(): Promise<void> {
-    await BleClient.initialize();
+    await this.#ready;
     // Le A6 annonce FEE7 et non FF00 : on filtre par nom, pas par service.
     const device = await BleClient.requestDevice({
       namePrefix: 'PeriPage',

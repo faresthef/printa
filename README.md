@@ -11,7 +11,12 @@ PeriPage (A6 / A6+) en Bluetooth Low Energy, sans l'app officielle.
 - **Image** : photo de la galerie, tramage photo, luminosité et rotation de 90°.
 - **Aperçu** exact de ce qui sortira sur le papier, puis **Imprimer**.
 
-## Installer sur ton iPhone
+## Utiliser sur iPhone sans rien installer (Bluefy)
+1. Installe **Bluefy – Web BLE Browser** depuis l'App Store.
+2. Dans Bluefy, ouvre https://faresthef.github.io/printa/
+3. Touche *Partager › Sur l'écran d'accueil* pour en faire une icône.
+
+## Installer l'app native sur ton iPhone
 
 ### Avec un Mac (le plus simple)
 1. Installe Xcode (App Store) et Node.js 22.
